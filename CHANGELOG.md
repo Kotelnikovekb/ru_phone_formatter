@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0 - Package release. Allows you to enter any phone number. For Russian phones, formatting works.
 
-* TODO: Describe initial release.
+
