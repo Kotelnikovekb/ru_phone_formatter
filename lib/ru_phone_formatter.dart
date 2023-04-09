@@ -10,7 +10,7 @@ class RuPhoneInputFormatter extends TextInputFormatter{
   bool _isRu=false;
 
 
-  SmartPhoneInputFormatter({
+  RuPhoneInputFormatter({
     String? initialText,
   }) {
     if (initialText != null) {
