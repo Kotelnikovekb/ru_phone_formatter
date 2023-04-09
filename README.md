@@ -1,28 +1,33 @@
 ## RU Phone Formatter
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://raw.githubusercontent.com/Kotelnikovekb/ru_phone_formatter/master/example.gif)
 
 The package allows you to format phone numbers. for Russian numbers, a mask will be applied. no matter which digit you start entering (from 9.8 or 7), the mask correctly adapts the value in the input field. If you specify a number not from Russia, then the mask will not work
 
 ## Getting started
 
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Just download the package to get started.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Declare a mask for formatting
 
 ```dart
   final maskFormatter =  SmartPhoneInputFormatter();
- 
+```
+add it to TextForm
 
+```dart
+  TextFormField(
+    inputFormatters:[maskFormatter],
+  );
 ```
 
-## Additional information
+get the result in maskFormatter.getClearPhone()
+```dart
+  String phone=maskFormatter.getClearPhone();
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Support the author
+[Support the author](https://www.donationalerts.com/r/mryurideveloper)
