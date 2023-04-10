@@ -14,7 +14,7 @@ Just download the package to get started.
 Declare a mask for formatting
 
 ```dart
-  final maskFormatter =  SmartPhoneInputFormatter();
+  final maskFormatter =  RuPhoneInputFormatter();
 ```
 add it to TextForm
 
