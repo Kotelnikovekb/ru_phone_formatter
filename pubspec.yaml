@@ -1,6 +1,6 @@
 name: ru_phone_formatter
-description: Mask for entering Russian phone numbers
-version: 1.0.0
+description: Mask for entering Russian phone numbers. Helps users enter their phone number comfortably
+version: 1.0.1
 homepage: https://github.com/Kotelnikovekb/ru_phone_formatter
 repository: https://github.com/Kotelnikovekb/ru_phone_formatter
 

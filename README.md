@@ -28,6 +28,14 @@ get the result in maskFormatter.getClearPhone()
 ```dart
   String phone=maskFormatter.getClearPhone();
 ```
+To add a new phone to an already existing mask, use:
+```dart
+final textController=TextFormField();
+......
+  maskFormatter.setPhone("999999999");
+textController.text=maskFormatter.getMaskedPhone();
+```
+
 
 ## Support the author
 [Support the author](https://www.donationalerts.com/r/mryurideveloper)

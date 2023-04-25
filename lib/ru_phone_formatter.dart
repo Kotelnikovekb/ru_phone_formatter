@@ -2,7 +2,8 @@ library ru_phone_formatter;
 
 import 'package:flutter/services.dart';
 
-
+///класс форматирования вводимых телефонов с учетом массы российских номеров. Позволяет вводить телефоны с 7,9,8
+///
 ///the formatting class of the entered phones, taking into account the masses of Russian numbers. Allows you to enter phones with 7,9,8
 class RuPhoneInputFormatter extends TextInputFormatter{
 
@@ -18,10 +19,22 @@ class RuPhoneInputFormatter extends TextInputFormatter{
           TextEditingValue.empty, TextEditingValue(text: initialText));
     }
   }
+
+  ///Задает номер телефона в маске
+  ///
+  /// Specifies the phone number in the mask
+  void setPhone(String phone){
+    formatEditUpdate(TextEditingValue.empty, TextEditingValue(text: phone));
+  }
+
+  ///Возвращает телефон в маске
+  ///
   ///Returns the phone in with a mask
   String getMaskedPhone() {
     return _formattedPhone;
   }
+  ///Возвращает телефон без маски и +. Для российских телефонов номер начинается с 9
+  ///
   ///Returns phone without mask and +. For Russian phones, the number starts with 9
   String getClearPhone() {
     if(_formattedPhone.isEmpty){
@@ -36,6 +49,8 @@ class RuPhoneInputFormatter extends TextInputFormatter{
             ? 11
             : _formattedPhone.replaceAll(RegExp(r'\D'), '').length);
   }
+  ///Проверяет, заполнен ли телефон. Для нерусских телефонов всегда актуально
+  ///
   ///Checks if the phone is full. For non-Russian phones always true
   bool isDone(){
     if(!_isRu){
@@ -43,8 +58,9 @@ class RuPhoneInputFormatter extends TextInputFormatter{
     }
     return (_formattedPhone.replaceAll(RegExp(r'\D'), '').length>10);
   }
+  ///Проверяет, является ли номер русским
   ///checks if the number is Russian
-  get isRussian=>_isRu;
+  bool get isRussian=>_isRu;
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
