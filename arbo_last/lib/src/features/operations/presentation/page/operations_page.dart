@@ -1,3 +1,4 @@
+import 'package:arbo_last/src/core/constants/project_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,9 @@ class OperationsPage extends GetView<OperationsXController> {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('ru_RU', null);
+
+
     return controller.obx(
             (state) => Scaffold(
               appBar: AppBar(
@@ -32,7 +36,7 @@ class OperationsPage extends GetView<OperationsXController> {
                         groupSeparatorBuilder: (ConsumptionModel element) => Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 6),
                           child: Text(
-                            DateFormat('dd LLL',).format(element.datecreate),
+                            DateFormat('dd LLL','ru_RU').format(element.datecreate),
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w800,
@@ -42,15 +46,15 @@ class OperationsPage extends GetView<OperationsXController> {
                           ),
                         ),
                         itemBuilder: (context, ConsumptionModel element) => ListTile(
-                          title: Text(element.category),
-                          subtitle: Text(DateFormat('dd LLLL HH:mm').format(element.datecreate)
+                          title: Text('${element.pm} - ${element.name}'),
+                          subtitle: Text(DateFormat('dd LLLL HH:mm','ru_RU').format(element.datecreate)
                           ),
-                          /*trailing: Text('',
-                        style: TextStyle(
-                            color: (element.cost > 0) ? Colors.green : Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),*/
+                          trailing: Text('${Utils.formatAmount(element.trueCost)} ₽',
+                            style: TextStyle(
+                                color: (Utils.doubleParser(element.trueCost) > 0) ? Colors.green : Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18),
+                          ),
                           /*leading: CircleAvatar(
                         backgroundColor: Utils.fromHex(element.category.color),
                         child: Icon(Utils.fromIcon(element.category.icon)),
@@ -66,6 +70,15 @@ class OperationsPage extends GetView<OperationsXController> {
                       )
                   )
                 ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () async{
+                  final res=await Get.toNamed(ProjectRoutes.NEW_OPERATION);
+                  if(res!=null){
+                    controller.addOperation(res);
+                  }
+                },
+                child: Icon(Icons.add),
               ),
             )
     );

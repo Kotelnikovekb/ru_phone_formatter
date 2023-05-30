@@ -18,6 +18,13 @@ class CompaniesPage extends GetView<CompaniesXController> {
                     return ListTile(
                      title: Text(state[index].name),
                       subtitle: Text(state[index].adress),
+                      onTap: ()=>Get.toNamed(
+                          ProjectRoutes.COMPANY,
+                          arguments: {
+                            'id':int.parse(state[index].id),
+                            'name':state[index].name
+                          }
+                      ),
                     );
                   },
                   separatorBuilder: (_,index)=> const Divider(),

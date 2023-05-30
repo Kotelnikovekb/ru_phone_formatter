@@ -115,6 +115,7 @@ class _AppSelectorState<T> extends State<AppSelector<T>> {
                                             });
                                             _controller.text = _selectedItemAsString(selectedItem);
                                             widget.onSelectionDone(widget.items[index]);
+                                            Get.back(result: selectedItem);
                                           }
                                       )
                                   );

@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../core/data/network/service/api_service.dart';
 import '../../../features/auth/domain/user_model.dart';
+import '../../domain/category_model.dart';
 import '../../domain/coordinats_model.dart';
 
 class SharedApi {
@@ -20,6 +21,14 @@ class SharedApi {
     try {
       final response = await _apiService.post('/geocoder.php',data: {'lat':latLng.latitude,'long':latLng.longitude});
       return List<CoordinatsModel>.from(response.data.map((x) => CoordinatsModel.fromJson(x)));
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<List<CategoryModel>> fetchCategory() async {
+    try {
+      final response = await _apiService.get('/fetchCategory.php',);
+      return List<CategoryModel>.from(response.data.map((x) => CategoryModel.fromJson(x)));
     } catch (e) {
       rethrow;
     }

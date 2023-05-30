@@ -15,6 +15,9 @@ class OperationsXController extends GetxController with StateMixin<List<Consumpt
     super.onInit();
     fetchOperations();
   }
+  void addOperation(ConsumptionModel operation){
+    change([operation,...state??[]],status: RxStatus.success());
+  }
   void fetchOperations()async{
     try{
       final res=await _api.fetchCompany(_page);

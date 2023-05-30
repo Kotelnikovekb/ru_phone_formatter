@@ -4,7 +4,6 @@ import 'package:arbo_last/src/core/x_controller/user_x_controller.dart';
 import 'package:arbo_last/src/features/auth/data/auth_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../../../core/constants/project_routes.dart';
@@ -22,7 +21,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _userStorage=GetStorage();
 
   final _btnController = RoundedLoadingButtonController();
   final _formKey = GlobalKey<FormState>();
@@ -34,15 +32,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
 
   @override
-  void initState() {
-
-    super.initState();
-
-  }
-
-  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

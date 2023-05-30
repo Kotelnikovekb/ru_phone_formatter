@@ -29,8 +29,8 @@ class MainScreen extends StatelessWidget {
               ),
               /// Profile
               SalomonBottomBarItem(
-                icon: Icon(Icons.person),
-                title: Text("Профиль"),
+                icon: Icon(Icons.currency_ruble),
+                title: Text("Операции"),
                 selectedColor: Colors.teal,
               ),
             ],

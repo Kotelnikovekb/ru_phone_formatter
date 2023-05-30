@@ -2,6 +2,7 @@ import 'package:arbo_last/src/core/data/network/service/api_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../domain/companies_model.dart';
+import '../domain/company_model.dart';
 
 class CompanyApi{
   final _apiService = ApiService();
@@ -50,6 +51,40 @@ class CompanyApi{
           dateCreate: DateTime.now(),
           category: categoryValues.map[type]!
       );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CompanyModel> fetchCompanyData(int id) async {
+    try {
+      final response = await _apiService.get('/getCompanyInfoById.php',queryParameters: {'id':id});
+      return CompanyModel.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<Work> createWork({
+    required String user,
+    required String name,
+    required String cost,
+    required String id,
+    required String type,
+    required String category,
+    required String subcategory
+  }) async {
+    try {
+      final response = await _apiService.post('/add-work.php',data:{
+        "user":user,
+        "name":name,
+        "cost": cost,
+        "id":"715",
+        "type":type,
+        "payer":"",
+        "category":category,
+        "subcategory":subcategory
+      });
+      return Work.fromJson(response.data['works'][0]);
     } catch (e) {
       rethrow;
     }

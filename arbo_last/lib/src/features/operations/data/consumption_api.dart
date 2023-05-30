@@ -12,4 +12,37 @@ class ConsumptionApi{
       rethrow;
     }
   }
+  Future<ConsumptionModel> createOperation(
+      {required String user,
+      required String name,
+      required String cost,
+      required String pm,
+      required String category,
+      required String subcategory}
+      ) async {
+    try {
+      final response = await _apiService.post('/create-consumption.php',data:{
+        "user": user,
+        "name":name,
+        "cost":cost,
+        "pm":pm,
+        "category":category,
+        "subcategory":subcategory
+      });
+      return ConsumptionModel(
+          id: response.data['consumption'][0]['id'],
+          datecreate: DateTime.now(),
+          user: user,
+          name: name,
+          cost: cost,
+          pm: pm,
+          category: category,
+          subcategory: subcategory,
+          trueCost: (category=='Расход')?'-$cost':cost,
+          paymentType: ''
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
